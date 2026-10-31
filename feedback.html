@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#141629" name="theme-color"/>
+<meta content="Анкета для оценки интерактивного урока" name="description"/>
+<title>Обратная связь — РАЗРЯД</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container header-inner">
+<a aria-label="РАЗРЯД, на главную" class="brand" href="index.html"><span class="brand-icon">0<span>1</span></span><span class="brand-name">РАЗРЯД<span class="brand-dot">.</span></span></a>
+<nav aria-label="Основная навигация" class="site-nav" id="site-nav"><ul><li><a class="" href="index.html">Урок</a></li><li><a class="" href="quiz.html">Тест</a></li><li><a aria-current="page" class="is-active" href="feedback.html">Обратная связь</a></li><li><a class="" href="admin.html">Мои результаты</a></li></ul></nav>
+<div class="header-tools"><button aria-label="Включить тёмную тему" class="icon-button theme-toggle" title="Переключить тему" type="button"><span aria-hidden="true" class="theme-symbol">☾</span></button><button aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню" class="icon-button menu-toggle" type="button"><span aria-hidden="true">☰</span></button></div>
+</div>
+</header>
+<main id="main"><section class="inner-hero"><div class="container inner-hero-grid"><div><span class="section-index section-index-light">ОБРАТНАЯ СВЯЗЬ / АНКЕТИРОВАНИЕ</span><h1>Сделаем этот урок <em>лучше вместе.</em></h1><p>Оцени урок и оставь комментарий. Ответ сохранится в этом браузере и не отправится на сервер.</p></div><div aria-hidden="true" class="inner-hero-number">✳<span>!</span></div></div></section>
+<section class="inner-content"><div class="container feedback-layout"><form class="large-panel feedback-form" id="feedback-form" novalidate=""><span class="panel-eyebrow">ТВОЁ МНЕНИЕ ВАЖНО</span><h2>Расскажи, как прошёл урок.</h2><p class="form-intro">Оцени полезность и понятность урока. Имя необязательно, данные остаются на твоём устройстве.</p><div class="form-field"><label class="field-label" for="feedback-name">Имя / псевдоним <span class="optional">необязательно</span></label><input autocomplete="nickname" class="field-input" id="feedback-name" maxlength="80" name="name" placeholder="Например, Ученик 8Б"/></div>
+<fieldset class="rating-field"><legend>Насколько полезен этот урок?</legend><p>1 — совсем не полезен, 5 — очень полезен.</p><div class="rating-row" id="rating-row"><label><input name="rating" required="" type="radio" value="1"/><span>1</span></label><label><input name="rating" type="radio" value="2"/><span>2</span></label><label><input name="rating" type="radio" value="3"/><span>3</span></label><label><input name="rating" type="radio" value="4"/><span>4</span></label><label><input name="rating" type="radio" value="5"/><span>5</span></label></div></fieldset>
+<fieldset class="rating-field"><legend>Насколько понятны объяснения?</legend><p>1 — сложно разобраться, 5 — всё понятно.</p><div class="rating-row"><label><input name="clarity" required="" type="radio" value="1"/><span>1</span></label><label><input name="clarity" type="radio" value="2"/><span>2</span></label><label><input name="clarity" type="radio" value="3"/><span>3</span></label><label><input name="clarity" type="radio" value="4"/><span>4</span></label><label><input name="clarity" type="radio" value="5"/><span>5</span></label></div></fieldset>
+<div class="form-field"><label class="field-label" for="feedback-comment">Что можно улучшить? <span class="optional">необязательно</span></label><textarea class="field-input textarea-input" id="feedback-comment" maxlength="1000" name="comment" placeholder="Например, добавить больше заданий на перевод чисел..." rows="5"></textarea><div class="input-footer"><span>Твои идеи помогут развивать урок</span><span id="comment-count">0 / 1000</span></div></div><p class="fine-text local-notice">Анкета сохраняется только в памяти этого браузера. Другие люди и преподаватель не увидят её через сайт.</p><button class="btn btn-purple" id="submit-feedback" type="submit">Сохранить отзыв <span aria-hidden="true">↗</span></button><p aria-live="polite" class="form-message" id="feedback-status"></p></form>
+<aside class="feedback-aside"><div class="feedback-aside-main"><span aria-hidden="true" class="feedback-star">✳</span><h3>Обратная связь — тоже часть обучения.</h3><p>Эта анкета позволяет опробовать формы и JavaScript. В статической версии GitHub Pages записи остаются только в браузере, где ты их отправил.</p><a href="admin.html">Посмотреть мои записи ↗</a></div><div class="aside-note"><strong>ГДЕ ХРАНИТСЯ ОТВЕТ?</strong><p>Для учебной демонстрации используется localStorage. Данные не отправляются на сервер и не образуют общую базу учеников.</p><code>localStorage / feedback</code></div></aside></div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="index.html">РАЗРЯД<span>.</span></a><p>Интерактивная лаборатория по информатике.<br/>Числа становятся понятнее, когда их можно исследовать.</p></div><div class="footer-meta"><a href="index.html">Учебные материалы</a><a href="quiz.html">Проверка знаний</a><a href="feedback.html">Оценить урок</a><span>Учебный проект · HTML5 / CSS3 / JavaScript</span></div></div></footer>
+<script defer="" src="js/common.js"></script>
+<script defer="" src="js/storage.js"></script><script defer="" src="js/feedback.js"></script>
+</body></html>

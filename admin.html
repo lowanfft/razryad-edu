@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#141629" name="theme-color"/>
+<meta content="Локальная статистика тестирования и отзывов этого браузера" name="description"/>
+<title>Статистика — РАЗРЯД</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container header-inner">
+<a aria-label="РАЗРЯД, на главную" class="brand" href="index.html"><span class="brand-icon">0<span>1</span></span><span class="brand-name">РАЗРЯД<span class="brand-dot">.</span></span></a>
+<nav aria-label="Основная навигация" class="site-nav" id="site-nav"><ul><li><a class="" href="index.html">Урок</a></li><li><a class="" href="quiz.html">Тест</a></li><li><a class="" href="feedback.html">Обратная связь</a></li><li><a aria-current="page" class="is-active" href="admin.html">Мои результаты</a></li></ul></nav>
+<div class="header-tools"><button aria-label="Включить тёмную тему" class="icon-button theme-toggle" title="Переключить тему" type="button"><span aria-hidden="true" class="theme-symbol">☾</span></button><button aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню" class="icon-button menu-toggle" type="button"><span aria-hidden="true">☰</span></button></div>
+</div>
+</header>
+<main id="main"><section class="inner-hero"><div class="container inner-hero-grid"><div><span class="section-index section-index-light">РЕЗУЛЬТАТЫ / ЭТОТ БРАУЗЕР</span><h1>Твои <em>результаты.</em></h1><p>Здесь отображаются только те тесты и анкеты, которые были сохранены в этом браузере.</p></div><div aria-hidden="true" class="inner-hero-number">JS<span>✓</span></div></div></section>
+<section class="inner-content"><div class="container">
+<div id="admin-dashboard">
+<div class="admin-heading"><div><span class="section-index">АНАЛИТИКА УРОКА</span><h2>Результаты <em>в цифрах.</em></h2></div><div class="admin-heading-actions"><span class="admin-user-label" id="admin-user-label">Данные этого браузера</span><button class="btn btn-outline" id="refresh-data" type="button">↻ Обновить</button><button class="btn btn-ink" id="clear-local-data" type="button">Очистить историю</button></div></div><div class="stat-grid"><article class="stat-card"><span>ПРОХОЖДЕНИЙ ТЕСТА</span><strong id="stat-attempts">—</strong><small>Всего попыток</small></article><article class="stat-card"><span>СРЕДНИЙ РЕЗУЛЬТАТ</span><strong id="stat-average">—</strong><small>По попыткам в этом браузере</small></article><article class="stat-card"><span>ОТЗЫВОВ</span><strong id="stat-responses">—</strong><small>Ответов анкеты</small></article><article class="stat-card"><span>ОЦЕНКА УРОКА</span><strong id="stat-rating">—</strong><small>По пятибалльной шкале</small></article></div>
+<div class="admin-table-card"><div class="table-head"><div><span class="panel-eyebrow">ТЕСТИРОВАНИЕ</span><h3>Последние результаты</h3></div><span class="table-chip">LOCALSTORAGE / quiz_results</span></div><div class="table-scroller"><table><thead><tr><th>Участник</th><th>Баллы</th><th>Процент</th><th>Время</th><th>Дата</th></tr></thead><tbody id="results-body"><tr><td colspan="5">Пока записей нет.</td></tr></tbody></table></div></div>
+<div class="admin-table-card"><div class="table-head"><div><span class="panel-eyebrow">АНКЕТИРОВАНИЕ</span><h3>Мнения об уроке</h3></div><span class="table-chip">LOCALSTORAGE / feedback</span></div><div class="table-scroller"><table><thead><tr><th>Участник</th><th>Полезность</th><th>Понятность</th><th>Комментарий</th><th>Дата</th></tr></thead><tbody id="feedback-body"><tr><td colspan="5">Пока записей нет.</td></tr></tbody></table></div></div><p class="admin-disclaimer">Данные хранятся только на этом устройстве и в этом браузере. Другие посетители сайта не могут видеть эту историю. Очистка данных браузера удалит записи; GitHub Pages не предоставляет базу данных.</p><p aria-live="polite" class="form-message" id="admin-status"></p></div></div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="index.html">РАЗРЯД<span>.</span></a><p>Интерактивная лаборатория по информатике.<br/>Числа становятся понятнее, когда их можно исследовать.</p></div><div class="footer-meta"><a href="index.html">Учебные материалы</a><a href="quiz.html">Проверка знаний</a><a href="feedback.html">Оценить урок</a><span>Учебный проект · HTML5 / CSS3 / JavaScript</span></div></div></footer>
+<script defer="" src="js/common.js"></script>
+<script defer="" src="js/storage.js"></script><script defer="" src="js/admin.js"></script>
+</body></html>

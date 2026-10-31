@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#141629" name="theme-color"/>
+<meta content="Проверь знания по системам счисления и сохрани результат" name="description"/>
+<title>Итоговый тест — РАЗРЯД</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container header-inner">
+<a aria-label="РАЗРЯД, на главную" class="brand" href="index.html"><span class="brand-icon">0<span>1</span></span><span class="brand-name">РАЗРЯД<span class="brand-dot">.</span></span></a>
+<nav aria-label="Основная навигация" class="site-nav" id="site-nav"><ul><li><a class="" href="index.html">Урок</a></li><li><a aria-current="page" class="is-active" href="quiz.html">Тест</a></li><li><a class="" href="feedback.html">Обратная связь</a></li><li><a class="" href="admin.html">Мои результаты</a></li></ul></nav>
+<div class="header-tools"><button aria-label="Включить тёмную тему" class="icon-button theme-toggle" title="Переключить тему" type="button"><span aria-hidden="true" class="theme-symbol">☾</span></button><button aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню" class="icon-button menu-toggle" type="button"><span aria-hidden="true">☰</span></button></div>
+</div>
+</header>
+<main id="main"><section class="inner-hero"><div class="container inner-hero-grid"><div><span class="section-index section-index-light">ПРОВЕРКА ЗНАНИЙ / 10 ВОПРОСОВ</span><h1>Насколько хорошо ты <em>понял числа?</em></h1><p>Никаких оценок в журнал. Только честная проверка знаний и понятный результат.</p></div><div aria-hidden="true" class="inner-hero-number">10<span>?</span></div></div></section>
+<section class="inner-content"><div class="container quiz-layout"><section aria-label="Итоговое тестирование" class="quiz-primary"><div class="large-panel" id="quiz-intro"><span class="panel-eyebrow">ГОТОВ К СТАРТУ?</span><h2>Десять вопросов.<br/><em>Один результат.</em></h2><p>Вопросы охватывают основания систем, двоичную запись, перевод чисел и историю. После каждого ответа ты увидишь объяснение.</p><form id="quiz-start-form"><label class="field-label" for="student-name">Как к тебе обращаться?</label><input autocomplete="nickname" class="field-input" id="student-name" maxlength="80" placeholder="Имя или псевдоним" required="" type="text"/><p class="fine-text">Имя и результат останутся только в этом браузере. Можешь указать псевдоним.</p><p aria-live="polite" class="form-message error-text" id="start-error"></p><button class="btn btn-purple" id="start-quiz" type="submit">Начать тест <span aria-hidden="true">↗</span></button></form></div>
+<div class="large-panel quiz-panel" hidden="" id="quiz-area"><div class="quiz-topline"><span class="panel-eyebrow" id="question-counter">ВОПРОС 01 / 10</span><span class="mono" id="quiz-progress-text">10%</span></div><div aria-label="Прогресс теста" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-track" id="progress-wrap" role="progressbar"><div class="progress-fill" id="quiz-progress"></div></div><div aria-live="polite" class="question-content" id="question-card"></div><div aria-live="polite" class="question-response" id="question-response"></div><div class="quiz-actions"><button class="btn btn-purple" disabled="" id="next-question" type="button">Проверить ответ <span aria-hidden="true">→</span></button></div></div>
+<div class="large-panel result-panel" hidden="" id="quiz-result"><span class="panel-eyebrow">УРОК ПРОЙДЕН</span><div class="result-ring"><span id="result-percent">0%</span><small>ВЕРНЫХ ОТВЕТОВ</small></div><h2 id="result-title">Результат</h2><p id="result-text"></p><p aria-live="polite" class="save-status" id="save-status"></p><div class="answer-review" id="answer-review"></div><div class="result-actions"><button class="btn btn-purple" id="restart-quiz" type="button">Пройти ещё раз ↺</button><a class="btn btn-outline" href="feedback.html">Оценить урок ↗</a></div></div>
+</section><aside class="quiz-sidebar"><div class="guide-card"><span class="guide-spark">✳</span><h3>Как это работает</h3><ol><li>Вводишь имя или псевдоним.</li><li>Выбираешь один ответ на каждый вопрос.</li><li>Получаешь объяснение и итоговый балл.</li><li>Результат сохраняется на этом устройстве.</li></ol></div><div class="sidebar-quote"><span>СОВЕТ</span><p>Если сомневаешься, вспомни главное: в позиционной записи каждая цифра умножается на степень основания.</p><a href="index.html#library">↖ Вернуться к уроку</a></div></aside></div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="index.html">РАЗРЯД<span>.</span></a><p>Интерактивная лаборатория по информатике.<br/>Числа становятся понятнее, когда их можно исследовать.</p></div><div class="footer-meta"><a href="index.html">Учебные материалы</a><a href="quiz.html">Проверка знаний</a><a href="feedback.html">Оценить урок</a><span>Учебный проект · HTML5 / CSS3 / JavaScript</span></div></div></footer>
+
+
+
+<script defer="" src="js/common.js"></script>
+<script defer="" src="js/storage.js"></script><script defer="" src="js/quiz.js"></script>
+</body></html>
