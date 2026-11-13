@@ -23,6 +23,8 @@ const artStorageKey = 'razryad-pixel-art-v1';
 const grid = document.getElementById('pixel-grid');
 const rowsBox = document.getElementById('pixel-rows');
 const countLabel = document.getElementById('pixel-count');
+const litLabel = document.getElementById('pixel-lit');
+const importCount = document.getElementById('pixel-import-count');
 const importArea = document.getElementById('pixel-import');
 const message = document.getElementById('pixel-message');
 const pixelButtons = [];
@@ -60,7 +62,9 @@ function renderArt() {
     button.setAttribute('aria-pressed', String(active));
     button.setAttribute('aria-label', `Строка ${Math.floor(i / 8) + 1}, столбец ${i % 8 + 1}: ${active ? '1, включён' : '0, выключен'}`);
   });
-  countLabel.textContent = `${pixels.reduce((sum, bit) => sum + bit, 0)} / 64 пикселей`;
+  const litPixels = pixels.reduce((sum, bit) => sum + bit, 0);
+  countLabel.textContent = `${litPixels} / 64 пикселей`;
+  litLabel.textContent = `${litPixels} / 64`;
   rowsBox.replaceChildren();
   rows.forEach((bits, row) => {
     const line = document.createElement('div');
@@ -76,7 +80,6 @@ function renderArt() {
     line.append(label, binary, hex);
     rowsBox.append(line);
   });
-  if (document.activeElement !== importArea) importArea.value = rows.join('\n');
   savePixels();
 }
 function paintAt(index, value) {
@@ -145,16 +148,48 @@ document.getElementById('pixel-invert').addEventListener('click', () => {
   setArt(pixelRows().map(row => [...row].map(bit => bit === '1' ? '0' : '1').join('')));
 });
 
+function binaryRowsFromInput() {
+  const lines = importArea.value.trim().split(/\r?\n/).map(line => line.trim());
+  if (lines.length !== 8 || lines.some(line => !/^[01]{8}$/.test(line))) return null;
+  return lines;
+}
+function updateImportCount() {
+  const lines = importArea.value.trim() ? importArea.value.trim().split(/\r?\n/) : [];
+  const correct = lines.filter(line => /^[01]{8}$/.test(line.trim())).length;
+  importCount.textContent = `${correct} из 8 строк`;
+  importCount.classList.toggle('has-errors', lines.length !== 8 || correct !== 8);
+  importArea.setAttribute('aria-invalid', String(lines.length !== 8 || correct !== 8));
+}
+function loadExampleCode() {
+  importArea.value = artPresets.alien.join('\n');
+  updateImportCount();
+  setMessage('Пример загружен. Нажми «Восстановить рисунок».');
+}
+document.getElementById('pixel-import-example').addEventListener('click', loadExampleCode);
+document.getElementById('pixel-import-current').addEventListener('click', () => {
+  importArea.value = pixelRows().join('\n');
+  updateImportCount();
+  setMessage('Код текущего рисунка перенесён в поле. Можешь изменить биты.');
+});
+importArea.addEventListener('input', () => {
+  updateImportCount();
+  setMessage('');
+});
 document.getElementById('pixel-restore').addEventListener('click', () => {
-  const rows = importArea.value.trim().split(/\s+/);
-  if (rows.length !== 8 || !rows.every(row => /^[01]{8}$/.test(row))) {
-    setMessage('Нужно ровно 8 строк по 8 цифр 0 и 1 в каждой.', true);
+  const rows = binaryRowsFromInput();
+  if (!rows) {
+    setMessage('Нужно ровно 8 строк по 8 цифр 0 и 1 в каждой. Проверь код.', true);
     importArea.focus();
     return;
   }
   setArt(rows);
-  setMessage('✓ Рисунок восстановлен из 64 бит.');
+  grid.classList.remove('is-restored');
+  void grid.offsetWidth;
+  grid.classList.add('is-restored');
+  setMessage('✓ Рисунок восстановлен. Посмотри на сетку выше.');
+  updateImportCount();
 });
+loadExampleCode();
 
 document.getElementById('pixel-copy').addEventListener('click', async () => {
   const code = pixelRows().join('\n');
@@ -258,7 +293,10 @@ const questHintToggle = document.getElementById('quest-hint-toggle');
 let levelIndex = 0;
 let errors = 0;
 let passed = false;
-let startedAt = Date.now();
+let startedAt = null;
+function beginQuestTime() {
+  if (startedAt === null) startedAt = Date.now();
+}
 
 function formatTime(milliseconds) {
   const seconds = Math.max(0, Math.floor(milliseconds / 1000));
@@ -301,7 +339,7 @@ function renderLevel() {
 function finishQuest() {
   document.getElementById('quest-in-progress').hidden = true;
   document.getElementById('quest-finished').hidden = false;
-  const ms = Date.now() - startedAt;
+  const ms = Date.now() - (startedAt ?? Date.now());
   document.getElementById('quest-time').textContent = formatTime(ms);
   document.getElementById('quest-errors').textContent = String(errors);
   try {
@@ -310,8 +348,11 @@ function finishQuest() {
   } catch { /* необязательно */ }
   updateBestLabel();
 }
+questInput.addEventListener('focus', beginQuestTime);
+questInput.addEventListener('input', beginQuestTime);
 questForm.addEventListener('submit', event => {
   event.preventDefault();
+  beginQuestTime();
   if (passed) {
     levelIndex++;
     if (levelIndex >= questLevels.length) finishQuest();
@@ -343,7 +384,7 @@ questHintToggle.addEventListener('click', () => {
   questHintToggle.textContent = questHint.hidden ? '✳ Показать подсказку' : '✳ Скрыть подсказку';
 });
 document.getElementById('quest-restart').addEventListener('click', () => {
-  levelIndex = 0; errors = 0; startedAt = Date.now();
+  levelIndex = 0; errors = 0; startedAt = null;
   document.getElementById('quest-in-progress').hidden = false;
   document.getElementById('quest-finished').hidden = true;
   renderLevel();

@@ -559,3 +559,5 @@ body.dark-theme .inline-feedback.is-error { color: #ffa2a8; }
 .admin-heading-actions .btn { min-height: 46px; padding: 12px 17px; }
 .admin-user-label { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; max-width: 220px; }
 @media (max-width: 700px) { .admin-heading-actions { width: 100%; } .admin-login { padding: 26px; } }
+
+@media (max-width: 820px) { .inner-hero-number span { right: 0; } }

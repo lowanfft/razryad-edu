@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#17182b">
   <meta name="description" content="Двоичный художник и игра-квест по системам счисления. Рисуй пикселями и разгадывай цифровые шифры.">
   <title>Игровая лаборатория — РАЗРЯД</title>
-  <link rel="stylesheet" href="style.css?v=20261113b">
-<link rel="stylesheet" href="games.css?v=20261113b">
+  <link rel="stylesheet" href="style.css?v=20261113c">
+<link rel="stylesheet" href="games.css?v=20261113c">
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -51,11 +51,15 @@
         <div class="code-panel-top"><span class="tiny-overline">ЖИВОЙ КОД</span><span class="code-live-dot">● ОБНОВЛЯЕТСЯ</span></div>
         <h3>От пикселей<br/>к <em>байтам.</em></h3><p class="code-panel-desc">Слева твой рисунок. Справа его строки в памяти компьютера: двоичный код и байт в HEX.</p>
         <div class="byte-columns"><span>СТРОКА</span><span>ДВОИЧНЫЙ КОД</span><span>HEX</span></div><div class="byte-rows mono" id="pixel-rows" aria-live="off"></div>
-        <div class="byte-total"><div><span>ЗАНЯТО ПАМЯТИ</span><strong>8 байт <small>/ 64 бита</small></strong></div><span aria-hidden="true">▧</span></div>
+        <div class="byte-total">
+          <div class="byte-storage"><span>РАЗМЕР НЕСЖАТОГО ИЗОБРАЖЕНИЯ</span><strong>8 байт <small>/ 64 бита</small></strong></div>
+          <div class="byte-dynamic"><span>ВКЛЮЧЕНО БИТОВ</span><strong id="pixel-lit">0 / 64</strong></div>
+        </div>
+        <p class="byte-note">Объём всегда 8 байт: даже выключенные пиксели записываются нулями. При экспорте в цветной PNG размер файла будет другим.</p>
         <div class="pixel-code-buttons"><button type="button" class="btn btn-lime" id="pixel-copy">Скопировать код ↗</button><button type="button" class="code-secondary" id="pixel-png">↓ Скачать PNG</button></div>
       </aside>
     </div>
-    <div class="pixel-import-card"><div><span class="tiny-overline">ОБРАТНЫЙ ЭКСПЕРИМЕНТ</span><h3>А если рисунок восстановить из кода?</h3><p>Вставь восемь строк по восемь нулей и единиц. Увидишь, как компьютер превращает их обратно в картинку.</p></div><div class="pixel-import-right"><label for="pixel-import">8 строк по 8 бит</label><textarea id="pixel-import" class="pixel-import-input mono" rows="3" spellcheck="false" placeholder="00100100&#10;01111110&#10;11111111..."></textarea><div class="pixel-import-actions"><button class="btn btn-purple" type="button" id="pixel-restore">Восстановить рисунок ↗</button><p class="pixel-message" id="pixel-message" aria-live="polite"></p></div></div></div>
+    <div class="pixel-import-card"><div><span class="tiny-overline">ОБРАТНЫЙ ЭКСПЕРИМЕНТ</span><h3>А если рисунок восстановить из кода?</h3><p>Измени двоичные строки или выбери другой пример, затем нажми «Восстановить». Рисунок слева изменится в соответствии с кодом.</p><p class="pixel-import-guide">Каждая строка содержит 8 символов 0 или 1. Всего требуется 8 строк.</p></div><div class="pixel-import-right"><div class="pixel-import-heading"><label for="pixel-import">Двоичный код изображения</label><span id="pixel-import-count" aria-live="polite">8 из 8 строк</span></div><div class="pixel-import-examples"><button type="button" id="pixel-import-example" class="import-example-btn">✳ Пример: пришелец</button><button type="button" id="pixel-import-current" class="import-example-btn">↙ Код моего рисунка</button></div><textarea id="pixel-import" class="pixel-import-input mono" rows="8" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pixel-import-help" placeholder="00011000&#10;00111100&#10;01111110&#10;11111111&#10;11111111&#10;01111110&#10;00111100&#10;00011000"></textarea><p id="pixel-import-help" class="pixel-import-help">Все 8 строк видны сразу. После восстановления результат появится на сетке выше.</p><div class="pixel-import-actions"><button class="btn btn-purple" type="button" id="pixel-restore">Восстановить рисунок ↗</button><p class="pixel-message" id="pixel-message" role="status" aria-live="polite"></p></div></div></div>
   </div></section>
 
   <section id="quest" class="quest-section" aria-labelledby="quest-heading"><div class="container">
