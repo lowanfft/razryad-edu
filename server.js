@@ -91,10 +91,16 @@ app.post('/api/posts',(req,res)=>{
 app.patch('/api/posts/:id/like',(req,res)=>{
   const id=validId(req.params.id);
   if(!id)return res.status(404).json({error:'Запись не найдена.'});
-  db.run('UPDATE posts SET likes=likes+1 WHERE id=?',[id],function(err){
+  const delta=req.body?.delta===undefined?1:req.body.delta;
+  if(delta!==1&&delta!==-1)return res.status(400).json({error:'Некорректное изменение лайка.'});
+  db.run('UPDATE posts SET likes=likes+? WHERE id=? AND (likes>0 OR ?=1)',[delta,id,delta],function(err){
     if(err)return sqliteError(res,err);
-    if(this.changes===0)return res.status(404).json({error:'Запись не найдена.'});
-    db.get('SELECT likes FROM posts WHERE id=?',[id],(readErr,row)=>readErr?sqliteError(res,readErr):res.json({id,likes:row.likes}));
+    db.get('SELECT likes FROM posts WHERE id=?',[id],(readErr,row)=>{
+      if(readErr)return sqliteError(res,readErr);
+      if(!row)return res.status(404).json({error:'Запись не найдена.'});
+      if(!this.changes)return res.status(409).json({error:'Лайк уже снят.'});
+      res.json({id,likes:row.likes});
+    });
   });
 });
 app.delete('/api/posts/:id',(req,res)=>{

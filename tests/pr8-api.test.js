@@ -13,7 +13,11 @@ test('POST, GET by ID, PATCH like and DELETE',async()=>{
   assert.equal(post.status,201);assert.ok(post.body.id>0);
   const id=post.body.id;
   const fetched=await req(`/api/posts/${id}`);assert.equal(fetched.body.title,'Тестовый заголовок');
-  const liked=await req(`/api/posts/${id}/like`,'PATCH');assert.equal(liked.status,200);assert.equal(liked.body.likes,1);
+  const liked=await req(`/api/posts/${id}/like`,'PATCH',{delta:1});assert.equal(liked.status,200);assert.equal(liked.body.likes,1);
+  const unliked=await req(`/api/posts/${id}/like`,'PATCH',{delta:-1});assert.equal(unliked.status,200);assert.equal(unliked.body.likes,0);
+  const repeated=await req(`/api/posts/${id}/like`,'PATCH',{delta:-1});assert.equal(repeated.status,409);
+  assert.equal((await req(`/api/posts/${id}`)).body.likes,0);
+  assert.equal((await req(`/api/posts/${id}/like`,'PATCH',{delta:5})).status,400);
   const removed=await req(`/api/posts/${id}`,'DELETE');assert.equal(removed.status,200);
   assert.equal((await req(`/api/posts/${id}`)).status,404);
 });

@@ -39,7 +39,10 @@ app.post('/api/posts',(req,res)=>{
 app.patch('/api/posts/:id/like',(req,res)=>{
   const id=validId(req.params.id),item=articles.find(post=>post.id===id);
   if(!item)return res.status(404).json({error:'Запись не найдена.'});
-  item.likes++;
+  const delta=req.body?.delta===undefined?1:req.body.delta;
+  if(delta!==1&&delta!==-1)return res.status(400).json({error:'Некорректное изменение лайка.'});
+  if(delta===-1&&item.likes===0)return res.status(409).json({error:'Лайк уже снят.'});
+  item.likes+=delta;
   res.json({id:item.id,likes:item.likes});
 });
 app.delete('/api/posts/:id',(req,res)=>{

@@ -9,6 +9,16 @@ const noteForm = document.getElementById('add-note-form');
 const noteSubmit = document.getElementById('note-submit');
 const noteSubmitStatus = document.getElementById('note-submit-status');
 let allArticles = [];
+const likedStorageKey = 'razryad-liked-notes-v1';
+let likedIds = new Set();
+try {
+  const saved = JSON.parse(localStorage.getItem(likedStorageKey) || '[]');
+  if (Array.isArray(saved)) likedIds = new Set(saved.filter(id => Number.isSafeInteger(id) && id > 0));
+} catch {}
+function storeLikedIds() {
+  try { localStorage.setItem(likedStorageKey, JSON.stringify([...likedIds])); } catch {}
+}
+
 
 async function apiRequest(url, options = {}) {
   const response = await fetch(url, { ...options, headers: { 'Content-Type': 'application/json', ...(options.headers || {}) } });
@@ -36,13 +46,27 @@ function makeCard(article) {
   const body=element('p','',article.text);
   const tags=element('div','note-card-tags',article.tags || '#системы_счисления');
   const actions=element('div','note-card-actions');
-  const like=element('button','note-like',`♡ ${article.likes} · Нравится`); like.type='button';
+  const like=element('button','note-like'); like.type='button';
+  function updateLikeButton() {
+    const pressed = likedIds.has(article.id);
+    like.textContent = `${pressed ? '♥' : '♡'} ${article.likes} · Нравится`;
+    like.setAttribute('aria-pressed', String(pressed));
+    like.classList.toggle('is-liked', pressed);
+    like.title = pressed ? 'Убрать лайк' : 'Поставить лайк';
+  }
+  updateLikeButton();
   like.addEventListener('click',async () => {
     like.disabled=true;
+    const removing = likedIds.has(article.id);
     try {
-      const result=await apiRequest(`/api/posts/${article.id}/like`,{method:'PATCH'});
+      const result=await apiRequest(`/api/posts/${article.id}/like`,{
+        method:'PATCH',body:JSON.stringify({delta:removing ? -1 : 1})
+      });
       article.likes=result.likes;
-      like.textContent=`♥ ${article.likes} · Нравится`;
+      if (removing) likedIds.delete(article.id);
+      else likedIds.add(article.id);
+      storeLikedIds();
+      updateLikeButton();
     } catch(err){setStatus(err.message,true);} finally {like.disabled=false;}
   });
   const del=element('button','note-delete','Удалить'); del.type='button';
