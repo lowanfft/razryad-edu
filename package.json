@@ -1,0 +1,19 @@
+{
+  "name": "razryad-edu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Educational website: systems of numeration, Express REST API, SQLite and Fetch API",
+  "scripts": {
+    "start": "node server.js",
+    "start:pr8": "node server-pr8.js",
+    "test": "node --test tests/sqlite-api.test.js",
+    "test:pr8": "node --test tests/pr8-api.test.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  }
+}

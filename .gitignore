@@ -1,18 +1,16 @@
-# Local environment and temporary files
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-*.log
 node_modules/
-
-# Never commit local databases or private configuration
-.env
-.env.*
-!.env.example
 *.db
 *.db-*
 *.sqlite
 *.sqlite3
+data/
+.env
+.env.*
+!.env.example
 *.pem
 *.key
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

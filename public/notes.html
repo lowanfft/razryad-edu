@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Учебные заметки о системах счисления: сервер Express, REST API и SQLite.">
+<title>Заметки — РАЗРЯД</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="notes.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="index.html" aria-label="РАЗРЯД, главная"><span class="brand-icon">0<span>1</span></span><span class="brand-name">РАЗРЯД<span class="brand-dot">.</span></span></a>
+<nav class="site-nav" id="site-nav" aria-label="Основная навигация"><ul>
+<li><a href="index.html">Урок</a></li><li><a href="playground.html">Игровая лаборатория</a></li><li><a href="notes.html" class="is-active" aria-current="page">Заметки</a></li><li><a href="quiz.html">Тест</a></li><li><a href="feedback.html">Обратная связь</a></li><li><a href="admin.html">Мои результаты</a></li>
+</ul></nav>
+<div class="header-tools"><button aria-label="Переключить тему" class="icon-button theme-toggle" type="button"><span aria-hidden="true" class="theme-symbol">☾</span></button><button class="icon-button menu-toggle" aria-label="Открыть меню" type="button" aria-expanded="false" aria-controls="site-nav">☰</button></div>
+</div></header>
+<main id="main">
+<section class="notes-hero"><div class="container notes-hero-grid">
+<div><div class="notes-kicker">ЛАБОРАТОРИЯ / REST API + SQL</div><h1>Знания, которые<br><em>остаются.</em></h1><p>Создавай заметки о системах счисления. Они сохраняются на сервере, а страница получает их через Fetch API без перезагрузки.</p><div class="notes-tags"><span>Node.js</span><span>Express</span><span>SQLite</span><span>fetch()</span></div></div>
+<div class="notes-graphic" aria-hidden="true"><div class="notes-graphic-top">CLIENT <span>→</span> API <span>→</span> SQLITE</div><div class="notes-graphic-number">1010<span>₂</span></div><div class="notes-graphic-equals">= 10<span>₁₀</span></div><div class="notes-graphic-bottom">ДАННЫЕ В БАЗЕ / ПОЛУЧЕНО ПО СЕТИ</div></div>
+</div></section>
+<section class="notes-section"><div class="container">
+<div class="notes-heading"><div><div class="notes-kicker">ЗАПИСИ / БИБЛИОТЕКА</div><h2>База знаний</h2><p>Публикации загружаются с локального сервера при открытии страницы.</p></div><button type="button" class="notes-button notes-reload" id="refresh-notes">↻ Обновить</button></div>
+<div class="notes-toolbar"><label class="notes-search"><span class="sr-only">Поиск по заметкам</span><input id="notes-search" type="search" placeholder="Поиск по названию, тексту или тегам…" autocomplete="off"></label><span class="notes-count" id="notes-count">Загрузка…</span></div>
+<p id="notes-status" class="notes-status" role="status" aria-live="polite">Загружаем записи…</p><div class="notes-grid" id="postsContainer" aria-live="polite"></div>
+<div class="notes-compose"><div class="notes-form-aside"><div class="notes-kicker">НОВАЯ ЗАПИСЬ</div><h2>Добавь<br><em>свою мысль.</em></h2><p>Попробуй описать решение задачи, необычную систему счисления или способ перевода числа.</p><div class="notes-tip">В итоговом режиме записи сохраняются в SQLite и остаются после перезапуска. В режиме ПР8 они хранятся только в памяти сервера.</div></div>
+<form id="add-note-form" class="notes-form" autocomplete="off">
+<label for="note-title">Заголовок <span>*</span></label><input type="text" id="note-title" maxlength="120" minlength="5" placeholder="Например, Как переводить числа в двоичную систему" required>
+<label for="note-text">Текст заметки <span>*</span></label><textarea id="note-text" rows="6" minlength="10" maxlength="3000" placeholder="Опиши способ, приведи пример или интересный факт…" required></textarea>
+<label for="note-tags">Теги</label><input type="text" id="note-tags" maxlength="120" placeholder="#двоичная #перевод">
+<div class="notes-form-actions"><button class="notes-button" id="note-submit" type="submit">Опубликовать заметку ↗</button><span id="note-submit-status" role="status" aria-live="polite"></span></div>
+</form></div>
+</div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="index.html">РАЗРЯД<span>.</span></a><p>Интерактивная лаборатория по информатике.</p></div><div class="footer-meta"><a href="index.html">Учебные материалы</a><a href="playground.html">Игровая лаборатория</a><a href="quiz.html">Проверка знаний</a><span>Учебный проект · HTML5 / CSS3 / JavaScript</span></div></div></footer>
+<script defer src="js/common.js"></script><script defer src="js/notes.js"></script>
+</body></html>

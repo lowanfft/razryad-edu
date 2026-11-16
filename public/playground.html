@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17182b">
+  <meta name="description" content="Двоичный художник и игра-квест по системам счисления. Рисуй пикселями и разгадывай цифровые шифры.">
+  <title>Игровая лаборатория — РАЗРЯД</title>
+  <link rel="stylesheet" href="style.css?v=20261113c">
+<link rel="stylesheet" href="games.css?v=20261113c">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" aria-label="РАЗРЯД, на главную" href="index.html"><span class="brand-icon">0<span>1</span></span><span class="brand-name">РАЗРЯД<span class="brand-dot">.</span></span></a>
+  <nav id="site-nav" class="site-nav" aria-label="Основная навигация"><ul>
+    <li><a href="index.html">Урок</a></li>
+    <li><a href="playground.html" class="is-active" aria-current="page">Игровая лаборатория</a></li>
+    <li><a href="notes.html">Заметки</a></li><li><a href="quiz.html">Тест</a></li>
+    <li><a href="feedback.html">Обратная связь</a></li>
+    <li><a href="admin.html">Мои результаты</a></li>
+  </ul></nav>
+  <div class="header-tools"><button class="icon-button theme-toggle" type="button" aria-label="Включить тёмную тему" title="Переключить тему"><span aria-hidden="true" class="theme-symbol">☾</span></button><button class="icon-button menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav"><span aria-hidden="true">☰</span></button></div>
+</div></header>
+<main id="main">
+  <section class="games-hero"><div class="container games-hero-layout">
+    <div class="games-hero-copy"><div class="eyebrow eyebrow-on-dark"><span class="eyebrow-dot"></span> РАЗРЯД / ИНТЕРАКТИВ / 02 ОПЫТА</div>
+      <h1>Поиграем<br/><span class="serif-accent">с нулями?</span></h1>
+      <p>Компьютер понимает всего два состояния. Но из них получаются рисунки, игры и целый цифровой мир. Проверь сам.</p>
+      <div class="hero-actions"><a class="btn btn-lime" href="#pixel-art">Создать пиксель-арт <span aria-hidden="true">↗</span></a><a class="hero-text-link" href="#quest">Пройти квест ↗</a></div>
+    </div>
+    <div class="games-hero-preview" aria-hidden="true">
+      <div class="preview-bar"><span><i></i> PIXEL_STUDIO.EXE</span><span>8 × 8</span></div>
+      <div class="preview-picture" id="hero-pixels"></div>
+      <div class="preview-bottom"><span>01001000 01001001</span><strong>64 BIT</strong></div>
+      <div class="preview-sticker">01 → ♥</div>
+    </div>
+  </div></section>
+  <div class="container games-stats"><span><b>01</b> Преврати картинку в код</span><span><b>02</b> Реши цифровой квест</span><span class="games-stat-extra">Всё работает прямо в браузере <span aria-hidden="true">✳</span></span></div>
+
+  <section id="pixel-art" class="pixel-section" aria-labelledby="pixel-heading"><div class="container">
+    <div class="section-header play-section-title"><div><span class="section-index">01 / ДВОИЧНЫЙ ХУДОЖНИК</span><h2 id="pixel-heading">Ты рисуешь.<br/><em>Компьютер кодирует.</em></h2></div><p>Каждый квадрат — один бит: включённый равен <b>1</b>, выключенный равен <b>0</b>. Восемь пикселей в строке составляют один байт.</p></div>
+    <div class="pixel-studio">
+      <div class="pixel-workspace">
+        <div class="pixel-toolhead"><div><span class="tiny-overline">РАБОЧАЯ ОБЛАСТЬ / 8×8</span><h3>Пиксельная мастерская</h3></div><div class="pixel-status"><span class="pixel-status-light"></span> РИСУЙ ИЛИ НАЖИМАЙ</div></div>
+        <div class="pixel-presets" role="group" aria-label="Готовые рисунки"><button type="button" class="preset-button is-picked" data-preset="heart">♥ Сердце</button><button type="button" class="preset-button" data-preset="smile">☺ Смайл</button><button type="button" class="preset-button" data-preset="alien">✳ Пришелец</button><button type="button" class="preset-button" data-preset="arrow">↑ Стрелка</button></div>
+        <div class="pixel-board-stage"><div class="pixel-board-frame"><div class="pixel-grid" id="pixel-grid" role="group" aria-label="Пиксельное изображение размером восемь на восемь" data-ink="violet"></div></div><div class="pixel-board-caption"><span>8 строк × 8 столбцов</span><span id="pixel-count">0 / 64 пикселей</span></div></div>
+        <div class="pixel-bottom-tools"><div class="ink-switcher"><span>ЦВЕТ</span><button type="button" aria-label="Фиолетовый цвет" class="ink-option ink-violet is-picked" data-ink="violet" aria-pressed="true"></button><button type="button" aria-label="Лаймовый цвет" class="ink-option ink-lime" data-ink="lime" aria-pressed="false"></button><button type="button" aria-label="Розовый цвет" class="ink-option ink-pink" data-ink="pink" aria-pressed="false"></button></div><div class="pixel-actions"><button class="mini-action" id="pixel-invert" type="button">◐ Инвертировать</button><button class="mini-action" id="pixel-clear" type="button">↺ Очистить</button></div></div>
+      </div>
+      <aside class="pixel-code-panel" aria-label="Двоичный и шестнадцатеричный код рисунка">
+        <div class="code-panel-top"><span class="tiny-overline">ЖИВОЙ КОД</span><span class="code-live-dot">● ОБНОВЛЯЕТСЯ</span></div>
+        <h3>От пикселей<br/>к <em>байтам.</em></h3><p class="code-panel-desc">Слева твой рисунок. Справа его строки в памяти компьютера: двоичный код и байт в HEX.</p>
+        <div class="byte-columns"><span>СТРОКА</span><span>ДВОИЧНЫЙ КОД</span><span>HEX</span></div><div class="byte-rows mono" id="pixel-rows" aria-live="off"></div>
+        <div class="byte-total">
+          <div class="byte-storage"><span>РАЗМЕР НЕСЖАТОГО ИЗОБРАЖЕНИЯ</span><strong>8 байт <small>/ 64 бита</small></strong></div>
+          <div class="byte-dynamic"><span>ВКЛЮЧЕНО БИТОВ</span><strong id="pixel-lit">0 / 64</strong></div>
+        </div>
+        <p class="byte-note">Объём всегда 8 байт: даже выключенные пиксели записываются нулями. При экспорте в цветной PNG размер файла будет другим.</p>
+        <div class="pixel-code-buttons"><button type="button" class="btn btn-lime" id="pixel-copy">Скопировать код ↗</button><button type="button" class="code-secondary" id="pixel-png">↓ Скачать PNG</button></div>
+      </aside>
+    </div>
+    <div class="pixel-import-card"><div><span class="tiny-overline">ОБРАТНЫЙ ЭКСПЕРИМЕНТ</span><h3>А если рисунок восстановить из кода?</h3><p>Измени двоичные строки или выбери другой пример, затем нажми «Восстановить». Рисунок слева изменится в соответствии с кодом.</p><p class="pixel-import-guide">Каждая строка содержит 8 символов 0 или 1. Всего требуется 8 строк.</p></div><div class="pixel-import-right"><div class="pixel-import-heading"><label for="pixel-import">Двоичный код изображения</label><span id="pixel-import-count" aria-live="polite">8 из 8 строк</span></div><div class="pixel-import-examples"><button type="button" id="pixel-import-example" class="import-example-btn">✳ Пример: пришелец</button><button type="button" id="pixel-import-current" class="import-example-btn">↙ Код моего рисунка</button></div><textarea id="pixel-import" class="pixel-import-input mono" rows="8" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pixel-import-help" placeholder="00011000&#10;00111100&#10;01111110&#10;11111111&#10;11111111&#10;01111110&#10;00111100&#10;00011000"></textarea><p id="pixel-import-help" class="pixel-import-help">Все 8 строк видны сразу. После восстановления результат появится на сетке выше.</p><div class="pixel-import-actions"><button class="btn btn-purple" type="button" id="pixel-restore">Восстановить рисунок ↗</button><p class="pixel-message" id="pixel-message" role="status" aria-live="polite"></p></div></div></div>
+  </div></section>
+
+  <section id="quest" class="quest-section" aria-labelledby="quest-heading"><div class="container">
+    <div class="section-header play-section-title"><div><span class="section-index">02 / ЦИФРОВОЙ КВЕСТ</span><h2 id="quest-heading">Взломай <em>систему.</em></h2></div><p>Четыре небольших испытания. Используй системы счисления, чтобы открыть доступ к секретному файлу.</p></div>
+    <div class="quest-layout"><div class="quest-intro"><span class="quest-side-mark">◈</span><span class="tiny-overline">МИССИЯ 01 / ДОСТУП К АРХИВУ</span><h3>Код есть.<br/><em>Ключа нет.</em></h3><p>В архиве спрятан секретный файл. Чтобы его открыть, тебе нужно доказать, что ты умеешь мыслить числами.</p>
+      <div class="mission-specs"><div><span>ИСПЫТАНИЯ</span><strong>04</strong></div><div><span>ПОДСКАЗКИ</span><strong>∞</strong></div><div><span>ЛУЧШЕЕ ВРЕМЯ</span><strong id="quest-best">—</strong></div></div>
+      <div class="quest-tip"><strong>Подсказка</strong><p>Испытания основаны на материале урока. Застрял? Используй кнопку «Показать подсказку».</p><a href="index.html#library">Повторить теорию ↗</a></div>
+    </div><div class="terminal" id="terminal"><div class="terminal-top"><span class="terminal-dots"><i></i><i></i><i></i></span><span>RAZRYAD / SECURE_CONSOLE</span><span class="terminal-version">v.1.0</span></div>
+      <div class="terminal-content" id="quest-in-progress"><div class="terminal-identity"><span><i></i> ЗАЩИЩЁННЫЙ АРХИВ</span><span id="quest-level-count">УРОВЕНЬ 01 / 04</span></div>
+        <div class="quest-progress" id="quest-progress" aria-label="Этапы квеста"></div>
+        <p class="terminal-prompt mono">$ <span id="quest-command">request_access --level=1</span><span class="terminal-cursor">_</span></p>
+        <div class="quest-question"><span class="terminal-section-label" id="quest-label">ЗАДАНИЕ 01 · ДЕКОДИРОВАНИЕ</span><h3 id="quest-title">Прочитай двоичный ключ</h3><p id="quest-description">Текст задания</p><div class="quest-cipher mono" id="quest-cipher">01000001₂</div></div>
+        <form id="quest-form" class="quest-form" novalidate><label for="quest-answer" id="quest-answer-label">ТВОЙ ОТВЕТ</label><div class="quest-input-row"><input class="quest-input mono" id="quest-answer" spellcheck="false" autocomplete="off" maxlength="12" placeholder="Введи ответ" type="text"><button class="quest-submit" id="quest-submit" type="submit">Проверить <span aria-hidden="true">↗</span></button></div></form>
+        <div class="quest-feedback" id="quest-feedback" aria-live="polite"></div><button class="quest-hint-button" type="button" id="quest-hint-toggle" aria-expanded="false">✳ Показать подсказку</button><div class="quest-hint" id="quest-hint" hidden></div>
+      </div>
+      <div class="terminal-finished" id="quest-finished" hidden><div class="unlock-symbol">✓</div><span class="unlocked-label">ACCESS GRANTED / ДОСТУП ОТКРЫТ</span><h3>Архив <em>разблокирован.</em></h3><p>Ты справился со всеми четырьмя задачами. Системы счисления — действительно твой инструмент.</p><div class="quest-completion-stats"><div><span>ИСПЫТАНИЯ</span><b>4 / 4</b></div><div><span>ВРЕМЯ</span><b id="quest-time">—</b></div><div><span>ОШИБОК</span><b id="quest-errors">0</b></div></div><button class="btn btn-lime" id="quest-restart" type="button">Пройти заново ↺</button></div>
+    </div></div>
+  </div></section>
+  <section class="games-next"><div class="container games-next-layout"><div><span class="section-index">ДАЛЬШЕ / ПРОВЕРКА ЗНАНИЙ</span><h2>Эксперимент удался?<br/><em>Закрепи результат.</em></h2></div><a href="quiz.html" class="btn btn-ink">Пройти итоговый тест ↗</a></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="index.html">РАЗРЯД<span>.</span></a><p>Интерактивная лаборатория по информатике.<br>Числа становятся понятнее, когда их можно исследовать.</p></div><div class="footer-meta"><a href="index.html">Учебные материалы</a><a href="playground.html">Игровая лаборатория</a><a href="notes.html">Заметки</a><a href="quiz.html">Проверка знаний</a><a href="feedback.html">Оценить урок</a><span>Учебный проект · HTML5 / CSS3 / JavaScript</span></div></div></footer>
+<script defer src="js/common.js"></script>
+<script defer src="js/playground.js"></script>
+</body></html>
